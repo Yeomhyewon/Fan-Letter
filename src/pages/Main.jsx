@@ -42,7 +42,6 @@ const Main = ({ letter, setLetter }) => {
   const [member, setMember] = useState("효정");
   //팬레터 없는 멤버 이름
   const [clickM, setClickM] = useState("");
-  // console.log(clickM);
 
   const onChangeNickname = (e) => {
     setUserNickname(e.target.value);
@@ -52,14 +51,12 @@ const Main = ({ letter, setLetter }) => {
   };
 
   const onChangeMember = (e) => {
-    // console.log(e.target.value);
     setMember(e.target.value);
   };
 
   //날짜 생성
   const today = new Date();
 
-  // console.log(setMember);
   // 클릭 시 펜레터 추가
   const clickNewLetterHandler = (e) => {
     const newLetter = {
@@ -98,9 +95,6 @@ const Main = ({ letter, setLetter }) => {
   };
 
   // 삭제된 팬레터 리스트
-
-  // console.log(delLetter.state.content);
-
   const [navColor, setNavColor] = useState("");
 
   // 필터링 된 멤머별 펜레터
@@ -114,9 +108,7 @@ const Main = ({ letter, setLetter }) => {
     });
     setfilterLetter(newletter);
     setNavColor(color);
-    // setLetter(memberletter);
   };
-  // console.log(letter);
   return (
     // Main 부분
     <>
@@ -126,14 +118,12 @@ const Main = ({ letter, setLetter }) => {
       <nav>
         <StDiv $justify="space-evenly" $margin="20px">
           {mumberColor.map((color) => {
-            // console.log(color);
             return (
               <StList
                 $bordercolor={color}
                 key={color}
                 onClick={() => {
                   clickMColorChange(color);
-                  // console.log(color);
                 }}
                 // style={{
                 //   backgroundColor: `${navColor === color ? color : ""}`,
@@ -168,8 +158,6 @@ const Main = ({ letter, setLetter }) => {
           </LetterNone>
         ) : (
           filterLetter.map((letter) => {
-            // console.log(letter.userNickname);
-            // console.log(letter);
             return (
               <Letters
                 letter={letter}

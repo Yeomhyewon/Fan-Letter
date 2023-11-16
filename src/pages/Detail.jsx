@@ -5,39 +5,28 @@ import styled from "styled-components";
 
 function Detail({ letter, setLetter }) {
   let { id } = useParams();
-  // console.log(id);
   const navigator = useNavigate();
-  // let { state } = useLocation();
-  // const letter = state.letter;
-  // console.log(letter);
-  // console.log(letter);
 
+  //뒤로 가기
   const clickHome = () => {
     navigator(-1);
   };
 
+  // 팬레터들 중 하나 필터링
   const filterLetter = letter.filter((L) => {
     return L.id === id;
   });
-  // console.log(filterLetter);
 
+  // 필터링 된 팬레터
   const [letterDetail] = useState(filterLetter);
-  // console.log(...letterDetail);
 
   // 삭제 기능(확인 메세지-> 삭제 후 홈화면 이동)
   const letterDelHandler = (id) => {
     if (window.confirm("정말 삭제하시겠습니까?") === true) {
-      // console.log(id);
-      // const newLetter = letterDetail.filter((L) => {
-      //   // console.log(id);
-      //   return id !== L.id;
-      // });
       setLetter((letters) => {
         const filtered = letters.filter((L) => {
           return L.id !== id;
         });
-        // console.log(filtered);
-        // console.log(letters, letter);
         return [...filtered];
       });
       navigator(-1);
@@ -52,12 +41,11 @@ function Detail({ letter, setLetter }) {
     setEditClicked(true);
   };
 
-  // onChange
+  // textarea onChange
   const onChangeEdit = (e) => {
     setEditContent(e.target.value);
   };
   //완료 누르면 적용
-  // console.log(letterDetail);
   const submitEditContent = () => {
     if (filterLetter[0].content === editContent) {
       alert("수정된 부분이 없습니다.");
@@ -68,24 +56,18 @@ function Detail({ letter, setLetter }) {
       ...letterDetail[0],
       content: editContent,
     };
-    // console.log(letter);
 
     setLetter((letters) => {
       const filtered = letters.filter((L) => {
         return L.id !== letter.id;
       });
-      // console.log(filtered);
-      // console.log(letters, letter);
       return [...filtered, letter];
     });
     navigator(-1);
   };
 
-  // console.log({ ...letterDetail, content: editContent }[0]);
-  // setLetterDetail([editLetter[0]]);
-  // setLetterDetail(edit);
-
   return (
+    // 삼항연산자 사용 true면 textarea나오고 완료버튼 나오게, false면 수정, 삭제버튼 나오게
     <>
       <GlobalStyle />
       <div>
