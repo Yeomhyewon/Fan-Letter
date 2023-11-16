@@ -10,8 +10,6 @@ const Main = () => {
   const letterData = useContext(LetterContext);
   const letter = letterData.letter;
   const setLetter = letterData.setLetter;
-  const navColor = letterData.navColor;
-  const setNavColor = letterData.setNavColor;
 
   // 색별로 나눔
   const mumberColor = [
@@ -51,6 +49,7 @@ const Main = () => {
 
   //팬레터 없는 멤버 이름
   const [clickM, setClickM] = useState("효정");
+  const [navColor, setNavColor] = useState("#B4E4FF");
 
   const onChangeNickname = (e) => {
     setUserNickname(e.target.value);

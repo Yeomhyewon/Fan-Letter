@@ -52,13 +52,11 @@ function App() {
       id: "5",
     },
   ]);
-  const [navColor, setNavColor] = useState("#B4E4FF");
+
   return (
     <>
       <GlobalStyle />
-      <LetterContext.Provider
-        value={{ letter, setLetter, navColor, setNavColor }}
-      >
+      <LetterContext.Provider value={{ letter, setLetter }}>
         <Router />
       </LetterContext.Provider>
     </>

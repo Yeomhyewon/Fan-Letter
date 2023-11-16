@@ -1,6 +1,6 @@
 import { LetterContext } from "context/LetterContext";
 import { useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 function Detail() {
@@ -8,7 +8,8 @@ function Detail() {
   const letterData = useContext(LetterContext);
   const letter = letterData.letter;
   const setLetter = letterData.setLetter;
-  const navColor = letterData.navColor;
+  const navColor = useLocation();
+  const color = navColor.state;
 
   let { id } = useParams();
   const navigator = useNavigate();
@@ -83,14 +84,14 @@ function Detail() {
                 <div key={letter.id} id={letter.id}>
                   <div>
                     <StButton
-                      $btn={navColor}
+                      $btn={color}
                       $margin="50px 0px 0px 50px"
                       onClick={clickHome}
                     >
                       HOME
                     </StButton>
                   </div>
-                  <LetterContainer $bordercolor={navColor}>
+                  <LetterContainer $bordercolor={color}>
                     <LetterImgName>
                       <StImg width="100px" src={letter.avatar} />
                       <NicknName>{letter.userNickname}</NicknName>
@@ -106,7 +107,7 @@ function Detail() {
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
-                        <StButton $btn={navColor} onClick={submitEditContent}>
+                        <StButton $btn={color} onClick={submitEditContent}>
                           완료
                         </StButton>
                       </div>
@@ -121,36 +122,34 @@ function Detail() {
                 <div key={letter.id} id={letter.id}>
                   <div>
                     <StButton
-                      $btn={navColor}
+                      $btn={color}
                       $margin="50px 0px 0px 50px"
                       onClick={clickHome}
                     >
                       HOME
                     </StButton>
                   </div>
-                  <LetterContainer $bordercolor={navColor}>
+                  <LetterContainer $bordercolor={color}>
                     <LetterImgName>
                       <StImg width="100px" src={letter.avatar} />
                       <NicknName>{letter.userNickname}</NicknName>
                     </LetterImgName>
                     <StWritedTo>TO : {letter.writedTo}</StWritedTo>
                     <div>
-                      <StContent $bgcolor={navColor}>
-                        {letter.content}
-                      </StContent>
+                      <StContent $bgcolor={color}>{letter.content}</StContent>
                     </div>
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
                         <StButton
-                          $btn={navColor}
+                          $btn={color}
                           $margin="6px"
                           onClick={clickEditArea}
                         >
                           수정
                         </StButton>
                         <StButton
-                          $btn={navColor}
+                          $btn={color}
                           $margin="6px"
                           onClick={() => {
                             letterDelHandler(letter.id);
