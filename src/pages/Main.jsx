@@ -10,6 +10,8 @@ const Main = () => {
   const letterData = useContext(LetterContext);
   const letter = letterData.letter;
   const setLetter = letterData.setLetter;
+  const navColor = letterData.navColor;
+  const setNavColor = letterData.setNavColor;
 
   // 색별로 나눔
   const mumberColor = [
@@ -103,7 +105,7 @@ const Main = () => {
     }
   };
 
-  const [navColor, setNavColor] = useState("");
+  // const [navColor, setNavColor] = useState("");
 
   // 필터링 된 멤머별 펜레터
   const [filterLetter, setfilterLetter] = useState([]);
