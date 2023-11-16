@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { LetterContext } from "context/LetterContext";
+import { useContext, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
-function Detail({ letter, setLetter }) {
+function Detail() {
+  //context
+  const letterData = useContext(LetterContext);
+  const letter = letterData.letter;
+  const setLetter = letterData.setLetter;
+
   let { id } = useParams();
   const navigator = useNavigate();
   const navColor = useLocation();

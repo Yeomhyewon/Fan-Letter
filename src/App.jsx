@@ -2,6 +2,7 @@ import GlobalStyle from "GlobalStyle";
 import React from "react";
 import Router from "shared/Router";
 import { useState } from "react";
+import { LetterContext } from "context/LetterContext";
 
 function App() {
   const [letter, setLetter] = useState([
@@ -54,7 +55,9 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <Router letter={letter} setLetter={setLetter} />
+      <LetterContext.Provider value={{ letter, setLetter }}>
+        <Router />
+      </LetterContext.Provider>
     </>
   );
 }

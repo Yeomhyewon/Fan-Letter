@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import Form from "components/Form";
 import Letters from "components/Letters";
 import { v4 as uuidv4 } from "uuid";
+import { LetterContext } from "context/LetterContext";
 
-const Main = ({ letter, setLetter }) => {
+const Main = () => {
+  //context
+  const letterData = useContext(LetterContext);
+  const letter = letterData.letter;
+  const setLetter = letterData.setLetter;
+
   // 색별로 나눔
   const mumberColor = [
     "#B4E4FF",
@@ -80,6 +86,7 @@ const Main = ({ letter, setLetter }) => {
     };
     if (userNickname === "" || content === "") {
       alert("닉네임 또는 내용을 입력해주세요.");
+      e.preventDefault();
       return false;
     } else if (userNickname.length > 8) {
       alert("닉네임은 최대 8자까지 가능합니다.");
