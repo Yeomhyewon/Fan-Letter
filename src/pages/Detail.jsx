@@ -135,7 +135,7 @@ function Detail({ letter, setLetter }) {
                     </div>
                     <DateButton>
                       <p>{letter.createdAt}</p>
-                      <div>
+                      <BtnDiv>
                         <StButton
                           $btn={color}
                           $margin="6px"
@@ -152,7 +152,7 @@ function Detail({ letter, setLetter }) {
                         >
                           삭제
                         </StButton>
-                      </div>
+                      </BtnDiv>
                     </DateButton>
                   </LetterContainer>
                 </div>
@@ -177,6 +177,11 @@ const NicknName = styled.p`
   margin-left: 10px;
 `;
 
+const BtnDiv = styled.div`
+  display: flex;
+  width: 200px;
+`;
+
 const LetterContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -198,7 +203,7 @@ const StWritedTo = styled.p`
 
 const StContent = styled.p`
   background-color: ${(props) => props.$bgcolor};
-  width: 780px;
+  width: 100%;
   padding: 10px;
   border-radius: 10px;
 `;
@@ -240,4 +245,5 @@ const Textarea = styled.textarea`
   font-size: large;
   font-family: "omyu_pretty";
 `;
+
 export default Detail;
