@@ -80,6 +80,7 @@ const Main = ({ letter, setLetter }) => {
     };
     if (userNickname === "" || content === "") {
       alert("닉네임 또는 내용을 입력해주세요.");
+      e.preventDefault();
       return false;
     } else if (userNickname.length > 8) {
       alert("닉네임은 최대 8자까지 가능합니다.");
@@ -87,11 +88,13 @@ const Main = ({ letter, setLetter }) => {
     } else if (content.length > 200) {
       alert("내용은 최대 200자까지 가능힙니다.");
       return false;
+    } else {
+      alert("등록되었습니다😁");
+      e.preventDefault();
+      setUserNickname("");
+      setContent("");
+      setLetter([...letter, newLetter]);
     }
-    e.preventDefault();
-    setUserNickname("");
-    setContent("");
-    setLetter([...letter, newLetter]);
   };
 
   const [navColor, setNavColor] = useState("");
