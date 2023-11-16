@@ -1,5 +1,5 @@
 과제 목적
-props drilling,context API, Redux 를 활용해서 3가지 방법으로 과제를 구현할 수 있다.
+-props drilling,context API, Redux 를 활용해서 3가지 방법으로 과제를 구현할 수 있다.
 
 기능
 
