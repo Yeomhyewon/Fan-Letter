@@ -204,7 +204,7 @@ const StWritedTo = styled.p`
 
 const StContent = styled.p`
   background-color: ${(props) => props.$bgcolor};
-  width: 780px;
+  width: 100%;
   padding: 10px;
   border-radius: 10px;
 `;
