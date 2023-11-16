@@ -135,7 +135,7 @@ function Detail({ letter, setLetter }) {
                     </div>
                     <DateButton>
                       <p>{letter.createdAt}</p>
-                      <BtnDiv>
+                      <div>
                         <StButton
                           $btn={color}
                           $margin="6px"
@@ -152,7 +152,7 @@ function Detail({ letter, setLetter }) {
                         >
                           삭제
                         </StButton>
-                      </BtnDiv>
+                      </div>
                     </DateButton>
                   </LetterContainer>
                 </div>
@@ -175,11 +175,6 @@ const LetterImgName = styled.div`
 `;
 const NicknName = styled.p`
   margin-left: 10px;
-`;
-
-const BtnDiv = styled.div`
-  display: flex;
-  width: 200px;
 `;
 
 const LetterContainer = styled.div`
