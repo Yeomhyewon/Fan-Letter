@@ -94,11 +94,13 @@ const Main = () => {
     } else if (content.length > 200) {
       alert("내용은 최대 200자까지 가능힙니다.");
       return false;
+    } else {
+      alert("등록되었습니다😁");
+      e.preventDefault();
+      setUserNickname("");
+      setContent("");
+      setLetter([...letter, newLetter]);
     }
-    e.preventDefault();
-    setUserNickname("");
-    setContent("");
-    setLetter([...letter, newLetter]);
   };
 
   const [navColor, setNavColor] = useState("");
