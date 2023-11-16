@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import GlobalStyle from "GlobalStyle";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 function Detail({ letter, setLetter }) {
   let { id } = useParams();
   const navigator = useNavigate();
+  const navColor = useLocation();
+  const color = navColor.state;
 
   //뒤로 가기
   const clickHome = () => {
@@ -69,7 +70,6 @@ function Detail({ letter, setLetter }) {
   return (
     // 삼항연산자 사용 true면 textarea나오고 완료버튼 나오게, false면 수정, 삭제버튼 나오게
     <>
-      <GlobalStyle />
       <div>
         {editClicked
           ? letterDetail.map((letter) => {
@@ -77,11 +77,15 @@ function Detail({ letter, setLetter }) {
               return (
                 <div key={letter.id} id={letter.id}>
                   <div>
-                    <StButton $margin="50px 0px 0px 50px" onClick={clickHome}>
+                    <StButton
+                      $btn={color}
+                      $margin="50px 0px 0px 50px"
+                      onClick={clickHome}
+                    >
                       HOME
                     </StButton>
                   </div>
-                  <LetterContainer>
+                  <LetterContainer $bordercolor={color}>
                     <LetterImgName>
                       <StImg width="100px" src={letter.avatar} />
                       <NicknName>{letter.userNickname}</NicknName>
@@ -97,7 +101,9 @@ function Detail({ letter, setLetter }) {
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
-                        <StButton onClick={submitEditContent}>완료</StButton>
+                        <StButton $btn={color} onClick={submitEditContent}>
+                          완료
+                        </StButton>
                       </div>
                     </DateButton>
                   </LetterContainer>
@@ -109,26 +115,35 @@ function Detail({ letter, setLetter }) {
               return (
                 <div key={letter.id} id={letter.id}>
                   <div>
-                    <StButton $margin="50px 0px 0px 50px" onClick={clickHome}>
+                    <StButton
+                      $btn={color}
+                      $margin="50px 0px 0px 50px"
+                      onClick={clickHome}
+                    >
                       HOME
                     </StButton>
                   </div>
-                  <LetterContainer>
+                  <LetterContainer $bordercolor={color}>
                     <LetterImgName>
                       <StImg width="100px" src={letter.avatar} />
                       <NicknName>{letter.userNickname}</NicknName>
                     </LetterImgName>
                     <StWritedTo>TO : {letter.writedTo}</StWritedTo>
                     <div>
-                      <StContent>{letter.content}</StContent>
+                      <StContent $bgcolor={color}>{letter.content}</StContent>
                     </div>
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
-                        <StButton $margin="6px" onClick={clickEditArea}>
+                        <StButton
+                          $btn={color}
+                          $margin="6px"
+                          onClick={clickEditArea}
+                        >
                           수정
                         </StButton>
                         <StButton
+                          $btn={color}
                           $margin="6px"
                           onClick={() => {
                             letterDelHandler(letter.id);
@@ -165,7 +180,7 @@ const LetterContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 3px solid #ff8080;
+  border: 3px solid ${(props) => props.$bordercolor};
   border-radius: 20px;
 
   padding: 30px;
@@ -181,7 +196,7 @@ const StWritedTo = styled.p`
 `;
 
 const StContent = styled.p`
-  background-color: #ffcece;
+  background-color: ${(props) => props.$bgcolor};
   width: 780px;
   padding: 10px;
   border-radius: 10px;
@@ -199,7 +214,7 @@ const StButton = styled.button`
   margin: ${(props) => props.$margin};
   border: none;
   border-radius: 10px;
-  background-color: #ffcece;
+  background-color: ${(props) => props.$btn};
 
   font-size: large;
   font-family: "omyu_pretty";
@@ -207,8 +222,8 @@ const StButton = styled.button`
   transition: all 0.6s;
 
   &:hover {
-    background-color: #fffb73;
-    box-shadow: 0px 0px 10px 4px #fffb73;
+    background-color: ${(props) => props.$btn};
+    box-shadow: 0px 0px 10px 4px ${(props) => props.$btn};
   }
 `;
 

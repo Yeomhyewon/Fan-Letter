@@ -8,7 +8,7 @@ const Main = ({ letter, setLetter }) => {
   // 색별로 나눔
   const mumberColor = [
     "#B4E4FF",
-    "#192655",
+    "#435585",
     "#FF8080",
     "#FFFB73",
     "#D8B4F8",
@@ -19,7 +19,7 @@ const Main = ({ letter, setLetter }) => {
     switch (color) {
       case "#B4E4FF":
         return "효정";
-      case "#192655":
+      case "#435585":
         return "미미";
       case "#FF8080":
         return "유아";
@@ -94,7 +94,6 @@ const Main = ({ letter, setLetter }) => {
     setLetter([...letter, newLetter]);
   };
 
-  // 삭제된 팬레터 리스트
   const [navColor, setNavColor] = useState("");
 
   // 필터링 된 멤머별 펜레터
@@ -160,6 +159,7 @@ const Main = ({ letter, setLetter }) => {
           filterLetter.map((letter) => {
             return (
               <Letters
+                navColor={navColor}
                 letter={letter}
                 id={letter.id}
                 createdAt={letter.createdAt}
