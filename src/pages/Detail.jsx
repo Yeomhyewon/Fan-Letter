@@ -99,7 +99,8 @@ function Detail() {
                     <StWritedTo>TO : {letter.writedTo}</StWritedTo>
                     <div>
                       <Textarea
-                        rows={6}
+                        $bgcolor={color}
+                        rows={4}
                         value={editContent}
                         onChange={onChangeEdit}
                       />
@@ -234,6 +235,15 @@ const StButton = styled.button`
 `;
 
 const Textarea = styled.textarea`
+  padding: 10px;
   width: 100%;
+  border-radius: 10px;
+  background-color: ${(props) => props.$bgcolor};
+  border: none;
+  resize: none;
+  outline: none;
+
+  font-size: large;
+  font-family: "omyu_pretty";
 `;
 export default Detail;
