@@ -48,6 +48,7 @@ const Main = () => {
   const [userNickname, setUserNickname] = useState("");
   const [content, setContent] = useState("");
   const [member, setMember] = useState("효정");
+
   //팬레터 없는 멤버 이름
   const [clickM, setClickM] = useState("");
 
