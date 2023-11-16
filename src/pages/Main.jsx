@@ -41,7 +41,7 @@ const Main = ({ letter, setLetter }) => {
   const [content, setContent] = useState("");
   const [member, setMember] = useState("효정");
   //팬레터 없는 멤버 이름
-  const [clickM, setClickM] = useState("");
+  const [clickM, setClickM] = useState("효정");
 
   const onChangeNickname = (e) => {
     setUserNickname(e.target.value);
@@ -97,10 +97,12 @@ const Main = ({ letter, setLetter }) => {
     }
   };
 
-  const [navColor, setNavColor] = useState("");
+  const [navColor, setNavColor] = useState("#B4E4FF");
 
-  // 필터링 된 멤머별 펜레터
-  const [filterLetter, setfilterLetter] = useState([]);
+  const filted = letter.filter((v) => v.writedTo === clickM);
+
+  // 필터링 된 멤버별 펜레터
+  const [filterLetter, setfilterLetter] = useState(filted);
 
   // 클릭 시 색 바뀌게, 멤버별 펜레터만 보이게
   const clickMColorChange = (color) => {
