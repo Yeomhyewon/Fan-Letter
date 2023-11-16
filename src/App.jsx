@@ -52,7 +52,7 @@ function App() {
       id: "5",
     },
   ]);
-  const [navColor, setNavColor] = useState("");
+  const [navColor, setNavColor] = useState("#B4E4FF");
   return (
     <>
       <GlobalStyle />
