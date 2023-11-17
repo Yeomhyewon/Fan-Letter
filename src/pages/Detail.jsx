@@ -1,13 +1,16 @@
-import { LetterContext } from "context/LetterContext";
-import { useContext, useState } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { deleteLetter, editLetter } from "redux/modules/letter";
 import styled from "styled-components";
 
 function Detail() {
-  //context
-  const letterData = useContext(LetterContext);
-  const letter = letterData.letter;
-  const setLetter = letterData.setLetter;
+  const letter = useSelector((state) => {
+    return state.letterReducer;
+  });
+
+  const dispatch = useDispatch();
+
   const navColor = useLocation();
   const color = navColor.state;
 
@@ -30,12 +33,7 @@ function Detail() {
   // 삭제 기능(확인 메세지-> 삭제 후 홈화면 이동)
   const letterDelHandler = (id) => {
     if (window.confirm("정말 삭제하시겠습니까?") === true) {
-      setLetter((letters) => {
-        const filtered = letters.filter((L) => {
-          return L.id !== id;
-        });
-        return [...filtered];
-      });
+      dispatch(deleteLetter(id));
       navigator(-1);
     }
   };
@@ -63,13 +61,7 @@ function Detail() {
       ...letterDetail[0],
       content: editContent,
     };
-
-    setLetter((letters) => {
-      const filtered = letters.filter((L) => {
-        return L.id !== letter.id;
-      });
-      return [...filtered, letter];
-    });
+    dispatch(editLetter(letter));
     navigator(-1);
   };
 

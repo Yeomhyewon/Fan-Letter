@@ -1,15 +1,20 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "components/Form";
 import Letters from "components/Letters";
 import { v4 as uuidv4 } from "uuid";
-import { LetterContext } from "context/LetterContext";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addLetter } from "redux/modules/letter";
 
 const Main = () => {
+  const letter = useSelector((state) => {
+    return state.letterReducer;
+  });
+
+  const dispatch = useDispatch();
+
   //context
-  const letterData = useContext(LetterContext);
-  const letter = letterData.letter;
-  const setLetter = letterData.setLetter;
 
   // 색별로 나눔
   const mumberColor = [
@@ -96,13 +101,12 @@ const Main = () => {
     } else if (content.length > 200) {
       alert("내용은 최대 200자까지 가능힙니다.");
       return false;
-    } else {
-      alert("등록되었습니다😁");
-      e.preventDefault();
-      setUserNickname("");
-      setContent("");
-      setLetter([...letter, newLetter]);
     }
+    alert("등록되었습니다😁");
+    e.preventDefault();
+    setUserNickname("");
+    setContent("");
+    dispatch(addLetter(newLetter));
   };
 
   const filted = letter.filter((v) => v.writedTo === clickM);
