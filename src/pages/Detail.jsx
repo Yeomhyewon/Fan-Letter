@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { deleteLetter, editLetter } from "redux/modules/letter";
+import Button from "components/Button";
 import styled from "styled-components";
 
 function Detail() {
@@ -42,7 +43,7 @@ function Detail() {
   const [editContent, setEditContent] = useState(filterLetter[0]?.content);
 
   // 누르면 textarea 나오게
-  const clickEditArea = () => {
+  const clickedTextArea = () => {
     setEditClicked(true);
   };
 
@@ -71,17 +72,16 @@ function Detail() {
       <div>
         {editClicked
           ? letterDetail.map((letter) => {
-              // console.log(letter);
               return (
                 <div key={letter.id} id={letter.id}>
                   <div>
-                    <StButton
-                      $btn={color}
+                    <Button
+                      eventHandler={clickHome}
                       $margin="50px 0px 0px 50px"
-                      onClick={clickHome}
+                      $btn={color}
                     >
                       HOME
-                    </StButton>
+                    </Button>
                   </div>
                   <LetterContainer $bordercolor={color}>
                     <LetterImgName>
@@ -100,9 +100,9 @@ function Detail() {
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
-                        <StButton $btn={color} onClick={submitEditContent}>
+                        <Button $btn={color} eventHandler={submitEditContent}>
                           완료
-                        </StButton>
+                        </Button>
                       </div>
                     </DateButton>
                   </LetterContainer>
@@ -110,17 +110,16 @@ function Detail() {
               );
             })
           : letterDetail.map((letter) => {
-              // console.log(letter);
               return (
                 <div key={letter.id} id={letter.id}>
                   <div>
-                    <StButton
+                    <Button
                       $btn={color}
                       $margin="50px 0px 0px 50px"
-                      onClick={clickHome}
+                      eventHandler={clickHome}
                     >
                       HOME
-                    </StButton>
+                    </Button>
                   </div>
                   <LetterContainer $bordercolor={color}>
                     <LetterImgName>
@@ -134,22 +133,22 @@ function Detail() {
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
-                        <StButton
+                        <Button
                           $btn={color}
                           $margin="6px"
-                          onClick={clickEditArea}
+                          eventHandler={clickedTextArea}
                         >
                           수정
-                        </StButton>
-                        <StButton
+                        </Button>
+                        <Button
                           $btn={color}
                           $margin="6px"
-                          onClick={() => {
+                          eventHandler={() => {
                             letterDelHandler(letter.id);
                           }}
                         >
                           삭제
-                        </StButton>
+                        </Button>
                       </div>
                     </DateButton>
                   </LetterContainer>
@@ -206,24 +205,6 @@ const DateButton = styled.div`
   justify-content: space-between;
   width: 100%;
   margin: 10px;
-`;
-
-const StButton = styled.button`
-  padding: 10px 25px;
-  margin: ${(props) => props.$margin};
-  border: none;
-  border-radius: 10px;
-  background-color: ${(props) => props.$btn};
-
-  font-size: large;
-  font-family: "omyu_pretty";
-  cursor: pointer;
-  transition: all 0.5s;
-
-  &:hover {
-    background-color: ${(props) => props.$btn};
-    box-shadow: 0px 0px 6px 6px ${(props) => props.$btn};
-  }
 `;
 
 const Textarea = styled.textarea`

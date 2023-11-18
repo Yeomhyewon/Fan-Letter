@@ -3,13 +3,17 @@ import styled from "styled-components";
 import Form from "components/Form";
 import Letters from "components/Letters";
 import { v4 as uuidv4 } from "uuid";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addLetter } from "redux/modules/letter";
+import { selectMember } from "redux/modules/selectedMember";
 
 const Main = () => {
   const letter = useSelector((state) => {
     return state.letterReducer;
+  });
+
+  const selectedMember = useSelector((state) => {
+    return state.selectedMemberReducer;
   });
 
   const dispatch = useDispatch();
@@ -53,7 +57,6 @@ const Main = () => {
   const [member, setMember] = useState("효정");
 
   //팬레터 없는 멤버 이름
-  const [clickM, setClickM] = useState("효정");
   const [navColor, setNavColor] = useState("#B4E4FF");
 
   const onChangeNickname = (e) => {
@@ -109,14 +112,14 @@ const Main = () => {
     dispatch(addLetter(newLetter));
   };
 
-  const filted = letter.filter((v) => v.writedTo === clickM);
+  const filted = letter.filter((v) => v.writedTo === selectedMember);
 
   // 필터링 된 멤버별 펜레터
   const [filterLetter, setfilterLetter] = useState(filted);
 
   // 클릭 시 색 바뀌게, 멤버별 펜레터만 보이게
   const clickMColorChange = (color) => {
-    setClickM(getMumberName(color));
+    dispatch(selectMember(getMumberName(color)));
     const newletter = letter.filter((letter) => {
       return letter.writedTo === getMumberName(color);
     });
@@ -154,21 +157,20 @@ const Main = () => {
       </nav>
       {/*펜레터 등록 부분*/}
       <Form
+        $btn={navColor}
         clickNewLetterHandler={clickNewLetterHandler}
         userNickname={userNickname}
         content={content}
-        member={member}
         onChangeContent={onChangeContent}
         onChangeMember={onChangeMember}
         onChangeNickname={onChangeNickname}
       />
       {/*펜레터 부분*/}
-
       <div>
         {filterLetter.length === 0 ? (
           <LetterNone>
-            {clickM}에게 등록된 팬레터가 없습니다! 첫 번째 팬레터의 주인공이
-            되어주세요!
+            {selectedMember}에게 등록된 팬레터가 없습니다! 첫 번째 팬레터의
+            주인공이 되어주세요!
           </LetterNone>
         ) : (
           filterLetter.map((letter) => {

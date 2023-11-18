@@ -55,6 +55,7 @@ const ADD_LETTER = "letter/ADD_LETTER";
 const DELETE_LETTER = "letter/DELETE_LETTER";
 const EDIT_LETTER = "letter/EDIT_LETTER";
 
+// 액션생성자 함수
 export const addLetter = (payload) => {
   return {
     type: ADD_LETTER,
@@ -87,7 +88,6 @@ const letterReducer = (state = initialState.letter, action) => {
       });
       return filterLetter;
     case EDIT_LETTER:
-      console.log(action.payload.content);
       return state.map((L) => {
         return L.id === action.payload.id
           ? { ...L, content: action.payload.content }
