@@ -1,3 +1,4 @@
+import Button from "components/Button";
 import { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -77,13 +78,13 @@ function Detail({ letter, setLetter }) {
               return (
                 <div key={letter.id} id={letter.id}>
                   <div>
-                    <StButton
+                    <Button
                       $btn={color}
                       $margin="50px 0px 0px 50px"
-                      onClick={clickHome}
+                      eventHandler={clickHome}
                     >
                       HOME
-                    </StButton>
+                    </Button>
                   </div>
                   <LetterContainer $bordercolor={color}>
                     <LetterImgName>
@@ -102,9 +103,9 @@ function Detail({ letter, setLetter }) {
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
-                        <StButton $btn={color} onClick={submitEditContent}>
+                        <Button $btn={color} eventHandler={submitEditContent}>
                           완료
-                        </StButton>
+                        </Button>
                       </div>
                     </DateButton>
                   </LetterContainer>
@@ -116,13 +117,13 @@ function Detail({ letter, setLetter }) {
               return (
                 <div key={letter.id} id={letter.id}>
                   <div>
-                    <StButton
+                    <Button
                       $btn={color}
                       $margin="50px 0px 0px 50px"
-                      onClick={clickHome}
+                      eventHandler={clickHome}
                     >
                       HOME
-                    </StButton>
+                    </Button>
                   </div>
                   <LetterContainer $bordercolor={color}>
                     <LetterImgName>
@@ -136,22 +137,22 @@ function Detail({ letter, setLetter }) {
                     <DateButton>
                       <p>{letter.createdAt}</p>
                       <div>
-                        <StButton
+                        <Button
                           $btn={color}
                           $margin="6px"
-                          onClick={clickEditArea}
+                          eventHandler={clickEditArea}
                         >
                           수정
-                        </StButton>
-                        <StButton
+                        </Button>
+                        <Button
                           $btn={color}
                           $margin="6px"
-                          onClick={() => {
+                          eventHandler={() => {
                             letterDelHandler(letter.id);
                           }}
                         >
                           삭제
-                        </StButton>
+                        </Button>
                       </div>
                     </DateButton>
                   </LetterContainer>

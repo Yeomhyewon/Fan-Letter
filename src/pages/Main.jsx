@@ -144,6 +144,7 @@ const Main = ({ letter, setLetter }) => {
       </nav>
       {/*펜레터 등록 부분*/}
       <Form
+        $btn={navColor}
         clickNewLetterHandler={clickNewLetterHandler}
         userNickname={userNickname}
         content={content}
