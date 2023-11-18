@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "./Button";
 
 function Form({
+  $btn,
   userNickname,
   content,
   clickNewLetterHandler,
@@ -13,7 +15,7 @@ function Form({
   const members = ["효정", "미미", "유아", "승희", "유빈", "아린"];
   return (
     <StyledForm>
-      <StDiv>
+      <StDiv $btn={$btn}>
         <div>
           <div>
             <p>닉네임</p>
@@ -47,7 +49,9 @@ function Form({
           </div>
         </div>
         <FlexBtn>
-          <StBtn onClick={clickNewLetterHandler}>보내기</StBtn>
+          <Button $btn={$btn} eventHandler={clickNewLetterHandler}>
+            보내기
+          </Button>
         </FlexBtn>
       </StDiv>
     </StyledForm>
@@ -63,9 +67,11 @@ const StyledForm = styled.form`
 `;
 
 const StDiv = styled.div`
-  border: 3px solid #b4e4ff;
+  border: 3px solid ${(props) => props.$btn};
   border-radius: 10px;
   padding: 20px;
+
+  transition: all 0.6s;
 `;
 
 const NicknameContent = styled.input`
@@ -91,19 +97,4 @@ const FlexBtn = styled.div`
   margin-top: 10px;
 `;
 
-const StBtn = styled.button`
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-
-  background-color: #b4e4ff;
-
-  font-size: medium;
-  font-family: "omyu_pretty";
-  cursor: pointer;
-  transition: all 0.6s;
-  &:hover {
-    background-color: #fffb73;
-  }
-`;
 export default Form;
