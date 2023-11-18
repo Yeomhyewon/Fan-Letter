@@ -211,24 +211,6 @@ const DateButton = styled.div`
   margin: 10px;
 `;
 
-const StButton = styled.button`
-  padding: 10px 25px;
-  margin: ${(props) => props.$margin};
-  border: none;
-  border-radius: 10px;
-  background-color: ${(props) => props.$btn};
-
-  font-size: large;
-  font-family: "omyu_pretty";
-  cursor: pointer;
-  transition: all 0.6s;
-
-  &:hover {
-    background-color: ${(props) => props.$btn};
-    box-shadow: 0px 0px 10px 4px ${(props) => props.$btn};
-  }
-`;
-
 const Textarea = styled.textarea`
   padding: 10px;
   width: 100%;

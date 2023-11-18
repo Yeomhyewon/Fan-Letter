@@ -97,19 +97,4 @@ const FlexBtn = styled.div`
   margin-top: 10px;
 `;
 
-const StBtn = styled.button`
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-
-  background-color: #b4e4ff;
-
-  font-size: medium;
-  font-family: "omyu_pretty";
-  cursor: pointer;
-  transition: all 0.6s;
-  &:hover {
-    background-color: #fffb73;
-  }
-`;
 export default Form;
