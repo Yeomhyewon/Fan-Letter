@@ -81,7 +81,7 @@ export const editLetter = (payload) => {
 const letterReducer = (state = initialState.letter, action) => {
   switch (action.type) {
     case ADD_LETTER:
-      return [action.payload, ...state];
+      return [...state, action.payload];
     case DELETE_LETTER:
       const filterLetter = state.filter((L) => {
         return L.id !== action.payload;
