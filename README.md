@@ -10,7 +10,8 @@
 
 예제 코드
 
-`` // 수정 기능
+```
+// 수정 기능
 // 수정할 내용에 대한 state를 만들어줌
 const [editClicked, setEditClicked] = useState(false);
 const [editContent, setEditContent] = useState(filterLetter[0]?.content);
@@ -46,4 +47,5 @@ content: editContent,
     });
     navigator(-1);
 
-};``
+};
+```
