@@ -11,33 +11,33 @@
 예제 코드
 
 ```
-// 수정 기능
-// 수정할 내용에 대한 state를 만들어줌
-const [editClicked, setEditClicked] = useState(false);
-const [editContent, setEditContent] = useState(filterLetter[0]?.content);
+  // 수정 기능
+  // 수정할 내용에 대한 state를 만들어줌
+  const [editClicked, setEditClicked] = useState(false);
+  const [editContent, setEditContent] = useState(filterLetter[0]?.content);
 
-// 누르면 textarea 나오게
-const clickEditArea = () => {
-setEditClicked(true);
-};
+  // 누르면 textarea 나오게
+  const clickEditArea = () => {
+    setEditClicked(true);
+  };
 
-// textarea onChange
-const onChangeEdit = (e) => {
-setEditContent(e.target.value);
-};
+  // textarea onChange
+  const onChangeEdit = (e) => {
+    setEditContent(e.target.value);
+  };
 
-//완료 누르면 적용
-//내용을 바꾼 새로운 객체를 만들고 더미데이터에 넣고 home으로 이동시킨다.
-const submitEditContent = () => {
-if (filterLetter[0].content === editContent) {
-alert("수정된 부분이 없습니다.");
-setEditClicked(true);
-return false;
-}
-const letter = {
-...letterDetail[0],
-content: editContent,
-};
+  //완료 누르면 적용
+  //내용을 바꾼 새로운 객체를 만들고 더미데이터에 넣고 home으로 이동시킨다.
+  const submitEditContent = () => {
+    if (filterLetter[0].content === editContent) {
+      alert("수정된 부분이 없습니다.");
+      setEditClicked(true);
+      return false;
+    }
+    const letter = {
+      ...letterDetail[0],
+      content: editContent,
+    };
 
     setLetter((letters) => {
       const filtered = letters.filter((L) => {
@@ -46,6 +46,6 @@ content: editContent,
       return [...filtered, letter];
     });
     navigator(-1);
+  };
 
-};
 ```
